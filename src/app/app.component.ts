@@ -7,6 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Welcome to Angular';
+
   course : string = 'Course the Spring boot 5 with Angular';
+  
   teacher : string = 'Andres Guzman'; // Declaración de una variable string
 }

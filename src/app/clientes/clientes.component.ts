@@ -35,6 +35,34 @@ export class ClientesComponent {
     );
   }
 
+
+  deleteUSer = (data) => {
+    Swal.fire({
+      title: '¿Deseas Eliminar el Cliente?',
+      text: `Eliminar el cliente ${data.name}`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, Eliminar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+
+        this.ClienteService.deleteClient(data.id).subscribe(
+          response => {
+            this.clientes = this.clientes.filter(cli => cli !== data)
+            Swal.fire(
+              `Cliente ${data.name}`,
+              'Cliente eliminado.',
+              'success'
+            );
+          }
+        );
+      }
+    })
+  }
+
   public onSave() {
     this.closebutton.nativeElement.click();
   }

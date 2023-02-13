@@ -11,6 +11,7 @@ export class ClienteService {
   private urlEndpointCreate: string = "http://localhost:8080/api/save";
   private urlEndpointFindById: string = "http://localhost:8080/api/clientsById";
   private urlEndpointUpdate: string = "http://localhost:8080/api/update";
+  private urlEndpointDelete: string = "http://localhost:8080/api/delete";
 
   private httpHeaders = new HttpHeaders({'Content-Type': 'application/json'})
   constructor(private http: HttpClient) { }
@@ -32,4 +33,12 @@ export class ClienteService {
   updateClient(cliente: Cliente): Observable<Cliente>{
     return this.http.put<Cliente>(`${this.urlEndpointUpdate}`, cliente, {headers: this.httpHeaders})
   }
+
+
+  deleteClient(id: number): Observable<Cliente>{
+    var obj = {"id": id};
+    return this.http.post<Cliente>(`${this.urlEndpointDelete}`, obj,{headers: this.httpHeaders})
+  }
+  
+
 }
